@@ -33,6 +33,13 @@
   "peerDependencies": {
     "rxjs": "^5.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/RxRelayJS"
+  },
+  "bugs": {
+    "url": "https://github.com/Microsoft/RxRelayJS/issues"
+  },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
