@@ -1,0 +1,46 @@
+{
+  "name": "rxrelayjs",
+  "version": "1.0.0",
+  "description": "Library that provides Relay types for rxjs. These are analogous to Subjects, but stateless and without the ability to call complete() or error().",
+  "main": "index.js",
+  "types": "./dist/RxRelay.d.ts",
+  "scripts": {
+    "build": "npm run tslint && tsc",
+    "tslint": "tslint --project tsconfig.json -r tslint.json -r ./node_modules/tslint-microsoft-contrib --fix || true",
+    "test": "jest"
+  },
+  "keywords": [
+    "LINQ",
+    "FRP",
+    "Reactive",
+    "Events",
+    "Rx",
+    "RxJS",
+    "RxRelay",
+    "Relay"
+  ],
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^21.1.2",
+    "jest": "^21.2.1",
+    "rxjs": "5.4.3",
+    "ts-jest": "^21.1.2",
+    "tslint": "^5.7.0",
+    "tslint-microsoft-contrib": "^5.0.1",
+    "typescript": "^2.5.3"
+  },
+  "peerDependencies": {
+    "rxjs": "^5.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ]
+  }
+}

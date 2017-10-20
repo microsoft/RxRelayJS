@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "sourceMap": true,
+        "noResolve": false,
+        "module": "commonjs",
+        "target": "es6",
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "dist/",
+        "lib": [
+            "es6"
+        ]
+    },
+
+    "filesGlob": [
+        "src/**/*{ts}"
+    ],
+
+    "exclude": [
+        "dist",
+        "node_modules",
+        "spec"
+    ]
+}
