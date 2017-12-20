@@ -82,7 +82,7 @@ observerB: 3
 Emits all previously observed and subsequent events to observers once they have subscribed.
 
 ```js
-var relay = new Relay();
+var relay = new ReplayRelay();
 
 relay.subscribe({
   next: (v) => console.log('observerA: ' + v)
