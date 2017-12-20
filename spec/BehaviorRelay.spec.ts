@@ -4,7 +4,9 @@
  */
 
 import { Relay, BehaviorRelay } from '../dist/RxRelay';
-import { Observable, Observer } from 'rxjs';
+import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 describe('BehaviorRelay', () => {
   it('should extend Relay', () => {
@@ -172,7 +174,7 @@ describe('BehaviorRelay', () => {
   });
 
   it('should be an Observer which can be given to Observable.subscribe (without error)', () => {
-    const source = Observable.of(1, 2, 3, 4, 5);
+    const source = of(1, 2, 3, 4, 5);
 
     const relay = new BehaviorRelay(0);
     const expected = [0, 1, 2, 3, 4, 5];

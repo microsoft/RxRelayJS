@@ -11,7 +11,8 @@
  * the License for the specific language governing permissions and limitations under the License.
  */
 
-import { Subscriber, Notification } from 'rxjs';
+import { Subscriber } from 'rxjs/Subscriber';
+import { Notification } from 'rxjs/Notification';
 import { Action } from './Action';
 import { IScheduler } from './Scheduler';
 import { PartialObserver } from './Observer';

@@ -6,7 +6,9 @@
 import { Relay } from './Relay';
 import { IScheduler } from './Scheduler';
 import { RelaySubscription } from './RelaySubscription';
-import { Subscriber, Subscription, Scheduler } from 'rxjs';
+import { queue as queueScheduler } from 'rxjs/scheduler/queue';
+import { Subscription } from 'rxjs/Subscription';
+import { Subscriber } from 'rxjs/Subscriber';
 import { ObserveOnSubscriber } from './ObserveOnSubscriber';
 
 /**
@@ -54,7 +56,7 @@ export class ReplayRelay<T> extends Relay<T> {
   }
 
   _getNow(): number {
-    return (this.scheduler || Scheduler.queue).now();
+    return (this.scheduler || queueScheduler).now();
   }
 
   private _trimBufferThenGetEvents(): ReplayEvent<T>[] {

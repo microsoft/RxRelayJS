@@ -4,7 +4,11 @@
  */
 
 import { Relay, BehaviorRelay, AnonymousRelay } from '../dist/RxRelay';
-import { Observable, Observer, TestScheduler } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { TestScheduler } from 'rxjs/testing/TestScheduler';
+import { of } from 'rxjs/observable/of';
+import { delay } from 'rxjs/operators/delay';
 
 let rxTestScheduler: TestScheduler;
 let hot;
@@ -148,7 +152,7 @@ describe('Relay', () => {
   it('should have a static create function that works', () => {
     expect(typeof Relay.create).toBe('function');
     
-    const source = Observable.of(1, 2, 3, 4, 5);
+    const source = of(1, 2, 3, 4, 5);
     const nexts = [];
     const output = [];
 
@@ -207,7 +211,7 @@ describe('Relay', () => {
   });
 
   it('should be an Observer which can be given to Observable.subscribe (without error)', () => {
-    const source = Observable.of(1, 2, 3, 4, 5);
+    const source = of(1, 2, 3, 4, 5);
 
     const relay = new Relay();
     const expected = [1, 2, 3, 4, 5];
@@ -223,7 +227,7 @@ describe('Relay', () => {
   });
 
   it('should be usable as an Observer of a finite delayed Observable', done => {
-    const source = Observable.of(1, 2, 3).delay(50);
+    const source = of(1, 2, 3).pipe(delay(50));
     const relay = new Relay();
 
     const expected = [1, 2, 3];
@@ -305,7 +309,7 @@ describe('AnonymousRelay', () => {
 
     const relay = Relay.create(null, new Observable((observer: Observer<any>) => {
       subscribed = true;
-      const subscription = Observable.of('x').subscribe(observer);
+      const subscription = of('x').subscribe(observer);
       return () => {
         subscription.unsubscribe();
       };

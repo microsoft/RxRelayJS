@@ -3,17 +3,13 @@
  * Licensed under the MIT License.
  */
 
-import { 
-    Observable,
-    Observer,
-    Operator,
-    Subscription,
-    Symbol,
-    Subscriber 
-} from 'rxjs';
+import { Operator } from 'rxjs/Operator';
+import { rxSubscriber } from 'rxjs/symbol/rxSubscriber';
+import { Subscriber } from 'rxjs/Subscriber';
+import { Subscription } from 'rxjs/Subscription';
+import { Observer } from 'rxjs/Observer';
+import { Observable } from 'rxjs/Observable';
 import { RelaySubscription } from './RelaySubscription';
-
-const rxSubscriberSymbol = Symbol.rxSubscriber;
 
 /**
  * Emits all subsequent events to observers once they have subscribed.
@@ -30,7 +26,7 @@ class RelaySubscriber<T> extends Subscriber<T> {
  */
 class Relay<T> extends Observable<T> {
 
-  [rxSubscriberSymbol]() {
+  [rxSubscriber]() {
     return new RelaySubscriber(this);
   }
 
