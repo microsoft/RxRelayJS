@@ -12,7 +12,7 @@
  */
 
 import { IScheduler } from './Scheduler';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * A unit of work to be executed in a {@link Scheduler}. An action is typically

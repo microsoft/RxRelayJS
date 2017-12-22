@@ -3,7 +3,8 @@
  * Licensed under the MIT License.
  */
 
-import { Observer, Subscription } from 'rxjs';
+import { Observer } from 'rxjs/Observer';
+import { Subscription } from 'rxjs/Subscription';
 import { Relay } from './Relay';
 
 /**

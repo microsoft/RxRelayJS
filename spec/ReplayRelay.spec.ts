@@ -4,7 +4,12 @@
  */
 
 import { Relay, ReplayRelay } from '../dist/RxRelay';
-import { Observable, Observer, TestScheduler } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { TestScheduler } from 'rxjs/testing/TestScheduler';
+import { of } from 'rxjs/observable/of';
+import { mergeMapTo } from 'rxjs/operators/mergeMapTo';
+import { tap } from 'rxjs/operators/tap';
 
 let rxTestScheduler: TestScheduler;
 let hot;
@@ -167,18 +172,19 @@ describe('ReplayRelay', () => {
       function feedCompleteIntoRelay() { relay.complete(); }
 
       const sourceTemplate =  '-1-2-3----4------5-6----7-8----9--|';
-      const subscriber1 = hot('      (a|)                         ').mergeMapTo(relay);
+      const subscriber1 = hot('      (a|)                         ').pipe(mergeMapTo(relay));
       const unsub1 =          '                     !             ';
       const expected1   =     '      (23)4------5-6--             ';
-      const subscriber2 = hot('            (b|)                   ').mergeMapTo(relay);
+      const subscriber2 = hot('            (b|)                   ').pipe(mergeMapTo(relay));
       const unsub2 =          '                         !         ';
       const expected2   =     '            4----5-6----7-         ';
-      const subscriber3 = hot('                           (c|)    ').mergeMapTo(relay);
+      const subscriber3 = hot('                           (c|)    ').pipe(mergeMapTo(relay));
       const expected3   =     '                           (78)9--|';
+      const actual = hot(sourceTemplate).pipe(
+        tap(feedNextIntoRelay, feedErrorIntoRelay, feedCompleteIntoRelay)
+      );
 
-      expectObservable(hot(sourceTemplate).do(
-        feedNextIntoRelay, feedErrorIntoRelay, feedCompleteIntoRelay
-      )).toBe(sourceTemplate);
+      expectObservable(actual).toBe(sourceTemplate);
       expectObservable(subscriber1, unsub1).toBe(expected1);
       expectObservable(subscriber2, unsub2).toBe(expected2);
       expectObservable(subscriber3).toBe(expected3);
@@ -191,12 +197,13 @@ describe('ReplayRelay', () => {
       function feedCompleteIntoRelay() { replayRelay.complete(); }
 
       const sourceTemplate =  '-1-2-3----4|';
-      const subscriber1 = hot('             (a|)').mergeMapTo(replayRelay);
+      const subscriber1 = hot('             (a|)').pipe(mergeMapTo(replayRelay));
       const expected1   =     '             (4|)';
+      const actual = hot(sourceTemplate).pipe(
+        tap(feedNextIntoRelay, feedErrorIntoRelay, feedCompleteIntoRelay)
+      );
 
-      expectObservable(hot(sourceTemplate).do(
-        feedNextIntoRelay, feedErrorIntoRelay, feedCompleteIntoRelay
-      )).toBe(sourceTemplate);
+      expectObservable(actual).toBe(sourceTemplate);
       expectObservable(subscriber1).toBe(expected1);
     });
   });
@@ -225,7 +232,7 @@ describe('ReplayRelay', () => {
   });
 
   it('should be an Observer which can be given to Observable.subscribe (without error)', () => {
-    const source = Observable.of(1, 2, 3, 4, 5);
+    const source = of(1, 2, 3, 4, 5);
 
     const relay = new ReplayRelay();
     const expected = [1, 2, 3, 4, 5];
