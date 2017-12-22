@@ -122,5 +122,15 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
+**Commit messages should follow the [conventional-changelog-standard](https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md).** (the same used by [RxJS](https://github.com/ReactiveX/rxjs))
+
+e.g.
+
+```
+fix(imports): No longer automatically imports all of rxjs, respecting your bundle size strategy (e.g. if you use operator patching or `.pipe()`)
+
+Closes #123
+```
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
