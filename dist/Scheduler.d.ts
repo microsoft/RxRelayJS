@@ -11,7 +11,7 @@
  * the License for the specific language governing permissions and limitations under the License.
  */
 import { Action } from './Action';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 export interface IScheduler {
     now(): number;
     schedule<T>(work: (this: Action<T>, state?: T) => void, delay?: number, state?: T): Subscription;

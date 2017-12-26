@@ -11,7 +11,7 @@
  * the License for the specific language governing permissions and limitations under the License.
  */
 import { IScheduler } from './Scheduler';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 /**
  * A unit of work to be executed in a {@link Scheduler}. An action is typically
  * created from within a Scheduler and an RxJS user does not need to concern

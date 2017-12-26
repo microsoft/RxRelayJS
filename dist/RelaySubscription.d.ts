@@ -2,7 +2,8 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
-import { Observer, Subscription } from 'rxjs';
+import { Observer } from 'rxjs/Observer';
+import { Subscription } from 'rxjs/Subscription';
 import { Relay } from './Relay';
 /**
  * Subscription subclass with the ability to remove itself

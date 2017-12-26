@@ -4,13 +4,13 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const rxjs_1 = require("rxjs");
+const Subscription_1 = require("rxjs/Subscription");
 /**
  * Subscription subclass with the ability to remove itself
  * from a Relay's internal list of observers when unsubscribe is called.
  * @class ReplaySubscription<T>
  */
-class RelaySubscription extends rxjs_1.Subscription {
+class RelaySubscription extends Subscription_1.Subscription {
     constructor(relay, subscriber) {
         super();
         this.subscriber = subscriber;

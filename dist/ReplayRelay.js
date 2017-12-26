@@ -6,7 +6,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Relay_1 = require("./Relay");
 const RelaySubscription_1 = require("./RelaySubscription");
-const rxjs_1 = require("rxjs");
+const queue_1 = require("rxjs/scheduler/queue");
 const ObserveOnSubscriber_1 = require("./ObserveOnSubscriber");
 /**
  * Emits all previously observed and subsequent events to observers once they have subscribed.
@@ -42,7 +42,7 @@ class ReplayRelay extends Relay_1.Relay {
         return subscription;
     }
     _getNow() {
-        return (this.scheduler || rxjs_1.Scheduler.queue).now();
+        return (this.scheduler || queue_1.queue).now();
     }
     _trimBufferThenGetEvents() {
         const now = this._getNow();

@@ -4,7 +4,8 @@
  */
 import { Relay } from './Relay';
 import { IScheduler } from './Scheduler';
-import { Subscriber, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
+import { Subscriber } from 'rxjs/Subscriber';
 /**
  * Emits all previously observed and subsequent events to observers once they have subscribed.
  * @class ReplayRelay<T>

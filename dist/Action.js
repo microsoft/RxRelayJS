@@ -12,7 +12,7 @@
  * the License for the specific language governing permissions and limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const rxjs_1 = require("rxjs");
+const Subscription_1 = require("rxjs/Subscription");
 /**
  * A unit of work to be executed in a {@link Scheduler}. An action is typically
  * created from within a Scheduler and an RxJS user does not need to concern
@@ -27,7 +27,7 @@ const rxjs_1 = require("rxjs");
  *
  * @class Action<T>
  */
-class Action extends rxjs_1.Subscription {
+class Action extends Subscription_1.Subscription {
     constructor(scheduler, work) {
         super();
     }
