@@ -13,7 +13,7 @@ export declare class BehaviorRelay<T> extends Relay<T> {
     private _value;
     constructor(_value: T);
     readonly value: T;
-    protected _subscribe(subscriber: Subscriber<T>): Subscription;
+    _subscribe(subscriber: Subscriber<T>): Subscription;
     getValue(): T;
     next(value: T): void;
 }

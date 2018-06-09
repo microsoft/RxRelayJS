@@ -18,7 +18,7 @@ declare class Relay<T> extends Observable<T> {
     next(value?: T): void;
     error(err: any): void;
     complete(): void;
-    protected _subscribe(subscriber: Subscriber<T>): Subscription;
+    _subscribe(subscriber: Subscriber<T>): Subscription;
     asObservable(): Observable<T>;
 }
 /**
@@ -32,6 +32,6 @@ declare class AnonymousRelay<T> extends Relay<T> {
         next(val: T): void;
     }, source: Observable<T>);
     next(value: T): void;
-    protected _subscribe(subscriber: Subscriber<T>): Subscription;
+    _subscribe(subscriber: Subscriber<T>): Subscription;
 }
 export { Relay, AnonymousRelay };

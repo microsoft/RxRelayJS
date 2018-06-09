@@ -17,7 +17,7 @@ export declare class ReplayRelay<T> extends Relay<T> {
     private _windowTime;
     constructor(bufferSize?: number, windowTime?: number, scheduler?: IScheduler | undefined);
     next(value: T): void;
-    protected _subscribe(subscriber: Subscriber<T>): Subscription;
+    _subscribe(subscriber: Subscriber<T>): Subscription;
     _getNow(): number;
     private _trimBufferThenGetEvents();
 }

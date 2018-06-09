@@ -63,7 +63,7 @@ class Relay<T> extends Observable<T> {
     // Ignore
   }
 
-  protected _subscribe(subscriber: Subscriber<T>): Subscription {
+  _subscribe(subscriber: Subscriber<T>): Subscription {
     this.observers.push(subscriber);
     return new RelaySubscription(this, subscriber);
   }
@@ -91,7 +91,7 @@ class AnonymousRelay<T> extends Relay<T> {
     }
   }
 
-  protected _subscribe(subscriber: Subscriber<T>): Subscription {
+  _subscribe(subscriber: Subscriber<T>): Subscription {
     const { source } = this;
     if (source) {
       return this.source.subscribe(subscriber);

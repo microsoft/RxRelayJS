@@ -35,7 +35,7 @@ export class ReplayRelay<T> extends Relay<T> {
     super.next(value);
   }
 
-  protected _subscribe(subscriber: Subscriber<T>): Subscription {
+  _subscribe(subscriber: Subscriber<T>): Subscription {
     const _events = this._trimBufferThenGetEvents();
     const scheduler = this.scheduler;
     let subscription: Subscription;

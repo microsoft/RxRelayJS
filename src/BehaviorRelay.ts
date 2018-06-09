@@ -21,7 +21,7 @@ export class BehaviorRelay<T> extends Relay<T> {
     return this.getValue();
   }
 
-  protected _subscribe(subscriber: Subscriber<T>): Subscription {
+  _subscribe(subscriber: Subscriber<T>): Subscription {
     const subscription = super._subscribe(subscriber);
     if (subscription && !subscription.closed) {
       subscriber.next(this._value);
