@@ -4,9 +4,7 @@
  */
 
 import { Relay, BehaviorRelay } from '../dist/RxRelay';
-import { Observer } from 'rxjs/Observer';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, Observer, of } from 'rxjs';
 
 describe('BehaviorRelay', () => {
   it('should extend Relay', () => {
@@ -145,7 +143,7 @@ describe('BehaviorRelay', () => {
     relay.next('foo');
     relay.subscribe(x => results2.push(x));
     relay.next('bar');
-    
+
     expect(results1).toEqual(['init', 'foo', 'bar']);
     expect(results2).toEqual(['foo', 'bar']);
   });

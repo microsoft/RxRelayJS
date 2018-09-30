@@ -12,7 +12,7 @@
  */
 
 import { Action } from './Action';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 export interface IScheduler {
   now(): number;

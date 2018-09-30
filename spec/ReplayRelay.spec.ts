@@ -4,12 +4,9 @@
  */
 
 import { Relay, ReplayRelay } from '../dist/RxRelay';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { TestScheduler } from 'rxjs/testing/TestScheduler';
-import { of } from 'rxjs/observable/of';
-import { mergeMapTo } from 'rxjs/operators/mergeMapTo';
-import { tap } from 'rxjs/operators/tap';
+import { Observable, Observer, of } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
+import { mergeMapTo, tap } from 'rxjs/operators';
 
 let rxTestScheduler: TestScheduler;
 let hot;
@@ -18,7 +15,7 @@ let expectObservable;
 beforeAll(() => {
   rxTestScheduler = new TestScheduler((actual, expected) => expect(actual).toEqual(expected));
   hot = (marbles: string, values?: any, error?: any) => rxTestScheduler.createHotObservable(marbles, values, error);
-  expectObservable = (observable: Observable<any>, unsubscriptionMarbles: string = null) => 
+  expectObservable = (observable: Observable<any>, unsubscriptionMarbles: string = null) =>
     rxTestScheduler.expectObservable(observable, unsubscriptionMarbles);
 });
 
@@ -68,7 +65,7 @@ describe('ReplayRelay', () => {
 
     relay.subscribe((x: number) => {
       expect(x).toBe(expected.shift());
-    }, 
+    },
     err => fail(),
     () => fail());
 
@@ -98,7 +95,7 @@ describe('ReplayRelay', () => {
     it('should replay 2 previous values when subscribed', () => {
       const relay = new ReplayRelay(2);
       const expected = [2, 3];
-  
+
       let i = 0;
       relay.next(1);
       relay.next(2);
@@ -106,7 +103,7 @@ describe('ReplayRelay', () => {
       relay.subscribe((x: number) => {
         expect(x).toBe(expected[i++]);
       });
-  
+
       expect(i).toBe(2);
     });
 

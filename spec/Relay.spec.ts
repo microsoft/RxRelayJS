@@ -4,11 +4,9 @@
  */
 
 import { Relay, BehaviorRelay, AnonymousRelay } from '../dist/RxRelay';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { TestScheduler } from 'rxjs/testing/TestScheduler';
-import { of } from 'rxjs/observable/of';
-import { delay } from 'rxjs/operators/delay';
+import { Observable, Observer, of } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
+import { delay } from 'rxjs/operators';
 
 let rxTestScheduler: TestScheduler;
 let hot;
@@ -17,7 +15,7 @@ let expectObservable;
 beforeAll(() => {
   rxTestScheduler = new TestScheduler((actual, expected) => expect(actual).toEqual(expected));
   hot = (marbles: string, values?: any, error?: any) => rxTestScheduler.createHotObservable(marbles, values, error);
-  expectObservable = (observable: Observable<any>, unsubscriptionMarbles: string = null) => 
+  expectObservable = (observable: Observable<any>, unsubscriptionMarbles: string = null) =>
     rxTestScheduler.expectObservable(observable, unsubscriptionMarbles);
 });
 
@@ -32,7 +30,7 @@ describe('Relay', () => {
 
     relay.next('foo');
     relay.next('bar');
-    
+
     expect(expected.length).toBe(0);
   });
 
@@ -52,10 +50,10 @@ describe('Relay', () => {
     });
 
     expect(relay.observers.length).toBe(2);
-    
+
     relay.next('foo');
     relay.next('bar');
-    
+
     expect(i).toBe(2);
     expect(j).toBe(2);
   });
@@ -71,7 +69,7 @@ describe('Relay', () => {
     relay.next('foo');
     relay.error(new Error('Should be ignored'));
     relay.next('bar');
-    
+
     expect(expected.length).toBe(0);
   });
 
@@ -86,7 +84,7 @@ describe('Relay', () => {
     relay.next('foo');
     relay.complete();
     relay.next('bar');
-    
+
     expect(expected.length).toBe(0);
   });
 
@@ -151,7 +149,7 @@ describe('Relay', () => {
 
   it('should have a static create function that works', () => {
     expect(typeof Relay.create).toBe('function');
-    
+
     const source = of(1, 2, 3, 4, 5);
     const nexts = [];
     const output = [];
