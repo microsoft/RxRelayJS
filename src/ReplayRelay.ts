@@ -6,9 +6,7 @@
 import { Relay } from './Relay';
 import { IScheduler } from './Scheduler';
 import { RelaySubscription } from './RelaySubscription';
-import { queue as queueScheduler } from 'rxjs/scheduler/queue';
-import { Subscription } from 'rxjs/Subscription';
-import { Subscriber } from 'rxjs/Subscriber';
+import { queueScheduler, Subscriber, Subscription } from 'rxjs';
 import { ObserveOnSubscriber } from './ObserveOnSubscriber';
 
 /**
