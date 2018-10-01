@@ -4,31 +4,15 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const rxSubscriber_1 = require("rxjs/symbol/rxSubscriber");
-const Subscriber_1 = require("rxjs/Subscriber");
-const Subscription_1 = require("rxjs/Subscription");
-const Observable_1 = require("rxjs/Observable");
+const rxjs_1 = require("rxjs");
 const RelaySubscription_1 = require("./RelaySubscription");
-/**
- * Emits all subsequent events to observers once they have subscribed.
- * @class RelaySubscriber<T>
- */
-class RelaySubscriber extends Subscriber_1.Subscriber {
-    constructor(destination) {
-        super(destination);
-        this.destination = destination;
-    }
-}
 /**
  * @class Relay<T>
  */
-class Relay extends Observable_1.Observable {
+class Relay extends rxjs_1.Observable {
     constructor() {
         super();
         this.observers = [];
-    }
-    [rxSubscriber_1.rxSubscriber]() {
-        return new RelaySubscriber(this);
     }
     lift(operator) {
         const relay = new AnonymousRelay(this, this);
@@ -54,7 +38,7 @@ class Relay extends Observable_1.Observable {
         return new RelaySubscription_1.RelaySubscription(this, subscriber);
     }
     asObservable() {
-        const observable = new Observable_1.Observable();
+        const observable = new rxjs_1.Observable();
         observable.source = this;
         return observable;
     }
@@ -84,7 +68,7 @@ class AnonymousRelay extends Relay {
             return this.source.subscribe(subscriber);
         }
         else {
-            return Subscription_1.Subscription.EMPTY;
+            return rxjs_1.Subscription.EMPTY;
         }
     }
 }

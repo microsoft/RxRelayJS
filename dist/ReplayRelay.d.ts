@@ -4,14 +4,13 @@
  */
 import { Relay } from './Relay';
 import { IScheduler } from './Scheduler';
-import { Subscription } from 'rxjs/Subscription';
-import { Subscriber } from 'rxjs/Subscriber';
+import { Subscriber, Subscription } from 'rxjs';
 /**
  * Emits all previously observed and subsequent events to observers once they have subscribed.
  * @class ReplayRelay<T>
  */
 export declare class ReplayRelay<T> extends Relay<T> {
-    private scheduler;
+    private scheduler?;
     private _events;
     private _bufferSize;
     private _windowTime;
@@ -19,5 +18,5 @@ export declare class ReplayRelay<T> extends Relay<T> {
     next(value: T): void;
     _subscribe(subscriber: Subscriber<T>): Subscription;
     _getNow(): number;
-    private _trimBufferThenGetEvents();
+    private _trimBufferThenGetEvents;
 }

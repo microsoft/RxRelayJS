@@ -1,6 +1,6 @@
 {
   "name": "rxrelayjs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Library that provides Relay types for rxjs. These are analogous to Subjects, but stateless and without the ability to call complete() or error().",
   "main": "index.js",
   "types": "./dist/RxRelay.d.ts",

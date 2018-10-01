@@ -12,8 +12,7 @@
  * the License for the specific language governing permissions and limitations under the License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-const Subscriber_1 = require("rxjs/Subscriber");
-const Notification_1 = require("rxjs/Notification");
+const rxjs_1 = require("rxjs");
 class ObserveOnMessage {
     constructor(notification, destination) {
         this.notification = notification;
@@ -26,7 +25,7 @@ exports.ObserveOnMessage = ObserveOnMessage;
  * @ignore
  * @extends {Ignored}
  */
-class ObserveOnSubscriber extends Subscriber_1.Subscriber {
+class ObserveOnSubscriber extends rxjs_1.Subscriber {
     constructor(destination, scheduler, delay = 0) {
         super(destination);
         this.scheduler = scheduler;
@@ -41,13 +40,13 @@ class ObserveOnSubscriber extends Subscriber_1.Subscriber {
         this.add(this.scheduler.schedule(ObserveOnSubscriber.dispatch, this.delay, new ObserveOnMessage(notification, this.destination)));
     }
     _next(value) {
-        this.scheduleMessage(Notification_1.Notification.createNext(value));
+        this.scheduleMessage(rxjs_1.Notification.createNext(value));
     }
     _error(err) {
-        this.scheduleMessage(Notification_1.Notification.createError(err));
+        this.scheduleMessage(rxjs_1.Notification.createError(err));
     }
     _complete() {
-        this.scheduleMessage(Notification_1.Notification.createComplete());
+        this.scheduleMessage(rxjs_1.Notification.createComplete());
     }
 }
 exports.ObserveOnSubscriber = ObserveOnSubscriber;

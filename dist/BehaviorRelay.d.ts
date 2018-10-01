@@ -3,8 +3,7 @@
  * Licensed under the MIT License.
  */
 import { Relay } from './Relay';
-import { Subscriber } from 'rxjs/Subscriber';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscriber, Subscription } from 'rxjs';
 /**
  * Emits the most recent observed event and all subsequent events to observers once they have subscribed.
  * @class BehaviorRelay<T>

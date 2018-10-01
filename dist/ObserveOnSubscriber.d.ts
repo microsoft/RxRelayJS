@@ -10,8 +10,7 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See
  * the License for the specific language governing permissions and limitations under the License.
  */
-import { Subscriber } from 'rxjs/Subscriber';
-import { Notification } from 'rxjs/Notification';
+import { Notification, Subscriber } from 'rxjs';
 import { Action } from './Action';
 import { IScheduler } from './Scheduler';
 import { PartialObserver } from './Observer';
@@ -30,7 +29,7 @@ export declare class ObserveOnSubscriber<T> extends Subscriber<T> {
     private delay;
     static dispatch(this: Action<ObserveOnMessage>, arg: ObserveOnMessage): void;
     constructor(destination: Subscriber<T>, scheduler: IScheduler, delay?: number);
-    private scheduleMessage(notification);
+    private scheduleMessage;
     protected _next(value: T): void;
     protected _error(err: any): void;
     protected _complete(): void;
