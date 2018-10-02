@@ -8,6 +8,10 @@ Via NPM:
 ```sh
 npm install rxrelayjs
 ```
+Via Yarn:
+```sh
+yarn add rxrelayjs
+```
 
 Note: The `rxjs` package is listed as a required peerDependency.
 
