@@ -22,8 +22,7 @@ class RelaySubscription extends rxjs_1.Subscription {
             return;
         }
         this.closed = true;
-        const relay = this.relay;
-        const observers = relay.observers;
+        const { observers } = this.relay;
         this.relay = null;
         if (!observers || observers.length === 0) {
             return;
