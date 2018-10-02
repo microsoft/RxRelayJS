@@ -13,13 +13,17 @@ class BehaviorRelay extends Relay_1.Relay {
     constructor(_value) {
         super();
         this._value = _value;
+        this._hasValue = false;
+        if (typeof _value !== 'undefined') {
+            this._hasValue = true;
+        }
     }
     get value() {
         return this.getValue();
     }
     _subscribe(subscriber) {
         const subscription = super._subscribe(subscriber);
-        if (subscription && !subscription.closed) {
+        if (subscription && !subscription.closed && this._hasValue) {
             subscriber.next(this._value);
         }
         return subscription;
@@ -28,7 +32,11 @@ class BehaviorRelay extends Relay_1.Relay {
         return this._value;
     }
     next(value) {
-        super.next(this._value = value);
+        this._value = value;
+        if (!this._hasValue) {
+            this._hasValue = true;
+        }
+        super.next(this._value);
     }
 }
 exports.BehaviorRelay = BehaviorRelay;

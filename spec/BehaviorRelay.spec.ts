@@ -186,4 +186,43 @@ describe('BehaviorRelay', () => {
     expect(expected).toEqual([]);
     expect(relay.complete).toBeCalled();
   });
+
+  it('should should not emit anything if no event has been pushed', () => {
+    var relay = new BehaviorRelay();
+
+    const next = jest.fn();
+
+    relay.subscribe({
+      next: () => next(),
+    });
+
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('should produce the same result as in the documentation', () => {
+    var relay = new BehaviorRelay();
+
+    const log = jest.fn();
+
+    relay.subscribe({
+      next: (v) => log('observerA: ' + v),
+    });
+
+    relay.next(1);
+    relay.next(2);
+
+    relay.subscribe({
+      next: (v) => log('observerB: ' + v),
+    });
+
+    relay.next(3);
+
+    expect(log.mock.calls.map(([msg]) => msg)).toEqual([
+      'observerA: 1',
+      'observerA: 2',
+      'observerB: 2',
+      'observerA: 3',
+      'observerB: 3',
+    ]);
+  });
 });
