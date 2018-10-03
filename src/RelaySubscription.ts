@@ -28,8 +28,7 @@ export class RelaySubscription<T> extends Subscription {
 
     this.closed = true;
 
-    const relay = this.relay!;
-    const observers = relay.observers;
+    const { observers } = this.relay!;
 
     this.relay = null;
 
