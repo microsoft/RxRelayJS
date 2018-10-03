@@ -188,7 +188,7 @@ describe('BehaviorRelay', () => {
   });
 
   it('should should not emit anything if no event has been pushed', () => {
-    var relay = new BehaviorRelay();
+    const relay = new BehaviorRelay();
 
     const next = jest.fn();
 
@@ -200,7 +200,7 @@ describe('BehaviorRelay', () => {
   });
 
   it('should produce the same result as in the documentation', () => {
-    var relay = new BehaviorRelay();
+    const relay = new BehaviorRelay();
 
     const log = jest.fn();
 
