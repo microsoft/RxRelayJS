@@ -52,7 +52,7 @@ observerB: 3
 Emits the most recent observed event and all subsequent events to observers once they have subscribed.
 
 ```js
-const relay = new BehaviorRelay();
+const relay = new BehaviorRelay(0);
 
 relay.subscribe({
   next: (v) => console.log('observerA: ' + v)
@@ -71,7 +71,7 @@ relay.next(3);
 Console output:
 
 ```none
-observerA: undefined
+observerA: 0
 observerA: 1
 observerA: 2
 observerB: 2
@@ -79,8 +79,7 @@ observerA: 3
 observerB: 3
 ```
 
-The first output is undefined as no initial value was provided to the `BehaviorRelay` constructor.
-You can set the initial value of the `BehaviorRelay` the following way:
+The initial value of the `BehaviorRelay` is set in the constructor:
 ```js
 const relay = new BehaviorRelay('initial');
 
