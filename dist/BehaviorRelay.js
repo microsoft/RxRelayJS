@@ -23,7 +23,7 @@ class BehaviorRelay extends Relay_1.Relay {
     }
     _subscribe(subscriber) {
         const subscription = super._subscribe(subscriber);
-        if (subscription && !subscription.closed && this._hasValue) {
+        if (subscription && !subscription.closed && this.hasValue()) {
             subscriber.next(this._value);
         }
         return subscription;
@@ -31,9 +31,12 @@ class BehaviorRelay extends Relay_1.Relay {
     getValue() {
         return this._value;
     }
+    hasValue() {
+        return this._hasValue;
+    }
     next(value) {
         this._value = value;
-        if (!this._hasValue) {
+        if (!this.hasValue()) {
             this._hasValue = true;
         }
         super.next(this._value);

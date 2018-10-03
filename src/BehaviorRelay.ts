@@ -26,7 +26,7 @@ export class BehaviorRelay<T> extends Relay<T> {
 
   _subscribe(subscriber: Subscriber<T>): Subscription {
     const subscription = super._subscribe(subscriber);
-    if (subscription && !subscription.closed && this._hasValue) {
+    if (subscription && !subscription.closed && this.hasValue()) {
       subscriber.next(this._value);
     }
     return subscription;
@@ -36,10 +36,14 @@ export class BehaviorRelay<T> extends Relay<T> {
     return this._value;
   }
 
+  hasValue(): boolean {
+    return this._hasValue;
+  }
+
   next(value: T): void {
     this._value = value;
 
-    if (!this._hasValue) {
+    if (!this.hasValue()) {
       this._hasValue = true;
     }
 

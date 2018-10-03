@@ -15,5 +15,6 @@ export declare class BehaviorRelay<T> extends Relay<T> {
     readonly value: T | void;
     _subscribe(subscriber: Subscriber<T>): Subscription;
     getValue(): T | void;
+    hasValue(): boolean;
     next(value: T): void;
 }
