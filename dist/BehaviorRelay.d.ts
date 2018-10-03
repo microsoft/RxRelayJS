@@ -9,10 +9,12 @@ import { Subscriber, Subscription } from 'rxjs';
  * @class BehaviorRelay<T>
  */
 export declare class BehaviorRelay<T> extends Relay<T> {
-    private _value;
-    constructor(_value: T);
-    readonly value: T;
+    private _value?;
+    private _hasValue;
+    constructor(_value?: T | undefined);
+    readonly value: T | void;
     _subscribe(subscriber: Subscriber<T>): Subscription;
-    getValue(): T;
+    getValue(): T | void;
+    hasValue(): boolean;
     next(value: T): void;
 }

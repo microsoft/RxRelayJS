@@ -11,28 +11,42 @@ import { Subscriber, Subscription } from 'rxjs';
  * @class BehaviorRelay<T>
  */
 export class BehaviorRelay<T> extends Relay<T> {
+  private _hasValue = false;
 
-  constructor(private _value: T) {
+  constructor(private _value?: T) {
     super();
+    if (typeof _value !== 'undefined') {
+      this._hasValue = true;
+    }
   }
 
-  get value(): T {
+  get value(): T | void {
     return this.getValue();
   }
 
   _subscribe(subscriber: Subscriber<T>): Subscription {
     const subscription = super._subscribe(subscriber);
-    if (subscription && !subscription.closed) {
+    if (subscription && !subscription.closed && this.hasValue()) {
       subscriber.next(this._value);
     }
     return subscription;
   }
 
-  getValue(): T {
+  getValue(): T | void {
     return this._value;
   }
 
+  hasValue(): boolean {
+    return this._hasValue;
+  }
+
   next(value: T): void {
-    super.next(this._value = value);
+    this._value = value;
+
+    if (!this.hasValue()) {
+      this._hasValue = true;
+    }
+
+    super.next(this._value);
   }
 }
