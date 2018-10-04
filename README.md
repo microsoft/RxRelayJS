@@ -79,20 +79,6 @@ observerA: 3
 observerB: 3
 ```
 
-The initial value of the `BehaviorRelay` is set in the constructor:
-```js
-const relay = new BehaviorRelay('initial');
-
-relay.subscribe({
-  next: (v) => console.log('observerA: ' + v)
-});
-```
-Console output:
-
-```none
-observerA: initial
-```
-
 ### ReplayRelay
 Emits all previously observed and subsequent events to observers once they have subscribed.
 
